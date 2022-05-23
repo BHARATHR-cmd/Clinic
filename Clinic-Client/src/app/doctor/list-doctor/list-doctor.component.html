@@ -1,0 +1,22 @@
+<div>
+    <div class="container">
+        <div class="row row-cols-2">
+            <div class=" col-md-6">
+                <div *ngFor="let doctor of doctors">
+                    <div class="container">
+                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Doctor Details</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{doctor.name}}</h5>
+                                <p class="card-text">{{doctor.age}}</p>
+                                <p class="card-text">{{doctor.gender}}</p>
+                                <p class="card-text">{{doctor.speciality}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

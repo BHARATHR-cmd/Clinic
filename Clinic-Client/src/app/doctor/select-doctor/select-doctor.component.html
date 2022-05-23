@@ -1,0 +1,15 @@
+<h1>Drop Down</h1>
+<div class="container">
+    <select class="form-select form-select-lg mb-2" [(ngModel)]="Singledoctor" (change)="selected()">
+    <option *ngFor="let Singledoctor of doctors"  [ngValue]="Singledoctor">{{Singledoctor.name}}</option>
+    </select>
+</div>
+<div class="container" [hidden]="toggle">
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Doctor Details</div>
+        <div class="card-body">
+            <h5 class="card-title">{{newname}}</h5>
+            <p class="card-text">{{newnumberOfPatients}}</p>
+        </div>
+    </div>
+</div>
