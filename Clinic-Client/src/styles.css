@@ -1,3 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
+#Home {
+    height: 650 px;
+    background-image: url("src\assets\pexels-karolina-grabowska-4386466.jpg");
+    background: size 100%;
+    background-size: cover;
+}

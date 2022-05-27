@@ -1,9 +1,13 @@
-<h1>Home</h1>
+<div class="main">
+    <h1 class="fw-bold">Welcome to Clinic</h1>
+</div>
+<a href="/"><button class="btn btn-primary">Home</button></a><br><br><br><br>
 
-<div class="container">
-    <a href="/doctor"><button class="btn">Doctor</button></a>
-    <a href="/patients"><button class="btn">Patients</button></a>
-</div>
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+<div class="position-relative">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <a href="/doctor"><button class="btn btn-warning">Doctor</button></a>&nbsp;&nbsp;&nbsp;
+        <a href="/patients"><button class="btn btn-danger">Patients</button></a>
+    </div>
+</div>&nbsp;&nbsp;
+
+<router-outlet></router-outlet>

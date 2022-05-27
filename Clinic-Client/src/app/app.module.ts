@@ -7,11 +7,12 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { CreateDoctorComponent } from './doctor/create-doctor/create-doctor.component';
 import { ListDoctorComponent } from './doctor/list-doctor/list-doctor.component';
 import {  HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './patient/patient.component';
 import { ListPatientsComponent } from './patient/list-patients/list-patients.component';
 import { CreatePatientsComponent } from './patient/create-patients/create-patients.component';
 import { SelectDoctorComponent } from './doctor/select-doctor/select-doctor.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { SelectDoctorComponent } from './doctor/select-doctor/select-doctor.comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule,FormsModule
+    AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule,Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

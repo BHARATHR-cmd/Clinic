@@ -1,18 +1,23 @@
+<br>
 <div class="container">
+    <br>
     <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
-        <input type="text" class="form-control" [(ngModel)]="pname" autocomplete="on" name="pname" id="pname" (input)="Search(pname)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="text" class="form-control" [(ngModel)]="name" name="name" id="name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     </div>
+    <br>
     <div class="container">
         <div class="row row-cols-2">
             <div class=" col-md-6">
-                <div *ngFor="let patient of patients">
+                <div *ngFor="let patient of patients | filter:name">
                     <div class="container">
-                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Doctor Details</div>
+                        <div class="card text-black mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Patient Details</div>
                             <div class="card-body">
                                 <h5 class="card-title">{{patient.name}}</h5>
                                 <p class="card-text">{{patient.prescription}}</p>
+                                <p class="card-text">{{patient.dateOfVisited}}</p>
+
                             </div>
                         </div>
                     </div>

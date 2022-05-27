@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm,Validators } from '@angular/forms';
 import { Doctor } from 'src/app/doctor/doctor';
 import { Patient } from '../Patient';
 import { CreatePatientsService } from './create-patients.service';
@@ -11,39 +11,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./create-patients.component.css']
 })
 export class CreatePatientsComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute,private router: Router,private createPatientService:CreatePatientsService){}
-
-
   public doctors!: Doctor[];
   public doctor! :Doctor;
   public patient!:Patient;
+  addForm = new FormGroup({
+    name:new FormControl('',[Validators.required,Validators.pattern('^([a-zA-Z]+\s)*[a-zA-Z]+$')]),
+dateOfVisited:new FormControl('',[Validators.required]),
+    visitedDoctor:new FormControl('',[Validators.required]),
+    prescription:new FormControl('',[Validators.required]),
+  })
+  constructor(private route: ActivatedRoute,private router: Router,private createPatientService:CreatePatientsService){}
 
-  
-//  selected(){
-//   //  this.visiteddoctor={
-//   //   newid:this.doctor.id=10001,
-//   //   newname: this.doctor.name.toString(),
-//   //   newage: Number(this.doctor.age.toString()),
-//   //   newgender: this.doctor.gender.toString(),
-//   //   newspeciality: this.doctor.speciality.toString(),
-//   //   newnumberOfPatients: Number(this.doctor.numberOfPatients.toString()),}
-//   this.visiteddoctor=this.doctor
-//     alert(this.visiteddoctor)
-  
-// }
-// selected(e:any){
-//   // const obj =e.target.value
-//   // for(let value in obj ){
-//   //   console.log(value)
-//   // }
-  
-//   alert(JSON.stringify(e.target.value.Object)
-//   );
-// }
-selectedHero?: Doctor;
+  selecteddoctor?: Doctor;
 onSelect(doctor: Doctor): void {
-  this.selectedHero = doctor;
+  this.selecteddoctor = doctor;
 }
   
   ngOnInit(): void {
@@ -53,6 +34,7 @@ onSelect(doctor: Doctor): void {
     this.createPatientService.getDoctors().subscribe(
       (response: Doctor[]) => {
         this.doctors = response;
+
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -60,29 +42,25 @@ onSelect(doctor: Doctor): void {
     );
   }
   gotoList() {
-    this.router.navigate(['/doctor/list']);
+    this.router.navigate(['/patients/list']);
   }
-
 // #########################################################################
-  public onAddPatient(addForm: NgForm): void {
-  // document.getElementById('add-doctor-form').click();
-  console.log(JSON.stringify(addForm.value))
-//   for(var property in addForm.value.doctor ) {
-//     alert(property + "=" + addForm.value.doctor[property]);
-// }
-  // addForm.value.visitedDoctor=this.selectedHero;
-  // console.log(JSON.stringify(addForm.value))
+  public onAddPatient(addForm:FormGroup): void {
 
     this.createPatientService.addPatient(addForm.value).subscribe(
       (response: Patient) => {
         this.gotoList();
         console.log(response);
+        addForm.reset();
         
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
+        addForm.reset();
+
       }
     );
   }
+
 
 }
